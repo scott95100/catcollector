@@ -2,13 +2,23 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 
+# import models
+from .models import Cat
 
 def index(request):
-    return HttpResponse('<h1>Cat Collector</h1>')
+    return render(request, 'index.html')
 
 def about(request):
-    lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere, mauris ac vulputate volutpat, erat justo sodales eros, in ultrices nulla ex eu risus. Morbi orci leo, sagittis nec vestibulum hendrerit, cursus id lectus. Ut dignissim id nunc at egestas. Sed blandit arcu elementum diam consectetur, sed porttitor ipsum suscipit. Ut nec varius sem. Ut ac ligula dignissim, pulvinar diam non, pellentesque purus. Phasellus quis nunc interdum, rutrum urna a, scelerisque arcu. Duis finibus sem vel purus consequat suscipit. Ut vehicula sapien porttitor, accumsan felis sit amet, molestie turpis. Suspendisse venenatis, massa vitae dapibus auctor, ligula ipsum semper est, nec pretium massa turpis at eros. Nulla volutpat tincidunt est, vel molestie erat ullamcorper id. Nulla vel libero tempus, molestie turpis non, auctor risus. Aliquam commodo odio at neque efficitur, in aliquet dolor pretium. Ut vitae est ac nibh lobortis commodo. Morbi vitae fermentum turpis. Fusce vel pharetra leo. Curabitur pulvinar feugiat nisl, vitae tempus sem ornare vitae. Fusce ut erat egestas, rutrum lorem nec, posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl dolor, pellentesque elementum tincidunt ut, molestie et justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed convallis tellus a lacus condimentum, ac commodo dolor imperdiet. Morbi tempus eget tortor quis egestas. Suspendisse orci nisi, egestas quis lacus eget, ultricies aliquet magna. Donec at imperdiet purus, quis aliquam lacus. Nulla suscipit lacus ut ante luctus, nec sagittis dolor finibus. Integer lacus nisi, tincidunt ut venenatis nec, scelerisque non eros. Maecenas sed ligula consequat, pulvinar purus at, vehicula dui. Fusce faucibus congue dolor, quis tristique diam placerat eget. Proin dapibus vulputate eros et faucibus. Aenean ornare iaculis efficitur.'
-    return HttpResponse(lorem_ipsum)
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def cats_index(request):
+    cats = Cat.objects.all()
+    return render(request, 'cats/index.html', { 'cats': cats })
+
 
 #make a view function
+#make the html page
 #add the view to the urls.py inside of main.app.urls
